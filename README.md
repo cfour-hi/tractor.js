@@ -23,7 +23,7 @@ new Tractor(options)
 </script>
 ```
 
-## options
+## Options
 
 - **`scroller`** - *{String} @require*
 
