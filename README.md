@@ -8,7 +8,7 @@
 
 ## Usage
 
-`npm install --save tractor`
+`npm install --save tractor.js`
 
 ```
 // ES6
