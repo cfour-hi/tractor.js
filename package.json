@@ -1,0 +1,49 @@
+{
+  "name": "tractor",
+  "version": "1.0.0",
+  "description": "移动端下拉加载（刷新）和滚动加载，无依赖，支持现代浏览器。",
+  "main": "dist/tractor.js",
+  "scripts": {
+    "testing": "cross-env NODE_ENV=testing webpack",
+    "build": "cross-env NODE_ENV=production webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monine/tractor.git"
+  },
+  "keywords": [
+    "drag",
+    "拖拽",
+    "drop-down",
+    "下拉",
+    "scroll",
+    "滚动",
+    "loading",
+    "加载"
+  ],
+  "author": "monine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monine/tractor/issues"
+  },
+  "homepage": "https://github.com/monine/tractor#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "cross-env": "^5.0.5",
+    "eslint": "^4.7.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "standard": "^10.0.3",
+    "webpack": "^3.6.0"
+  },
+  "standard": {
+    "ignore": [
+      "dist/"
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tractor</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      background-color: #eee;
+    }
+
+    .scroller {
+      overflow: scroll;
+      position: absolute;
+      top: -50px;
+      bottom: 0;
+      width: 100%;
+      line-height: 1;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .drop-down-refresh-layer {
+      width: 100%;
+      font-size: 12px;
+      line-height: 50px;
+      text-align: center;
+      background-color: #eee;
+    }
+
+    .content p {
+      padding: 10px;
+    }
+
+    .scroll-loading {
+      height: 50px;
+      font-size: 12px;
+      line-height: 50px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scroller">
+    <div class="drop-down-refresh-layer">
+      <p class="drop-down-refresh-text">下拉加载</p>
+      <div class="drop-down-refresh-loader"></div>
+    </div>
+    <div class="scroller-content">
+      <div class="content"></div>
+      <div class="scroll-loading">加载中...</div>
+    </div>
+  </div>
+  <script src="../dist/tractor.js"></script>
+  <script>
+    (function () {
+      var XLJZ = '下拉加载'
+      var SKJZ = '松开加载'
+      var elDropDownRefreshText = document.querySelector('.drop-down-refresh-text')
+      var dropDownRefreshText = XLJZ
+
+      new Tractor({
+        scroller: '.scroller',
+        enableDragLoading: true,
+        enableScrollLoading: true,
+        dragThreshold: 50,
+        scrollThreshold: 50,
+        onDragStart: function () {
+          console.log('onDragStart')
+        },
+        onDragLessThreshold: function () {
+          console.log('onDragLessThreshold')
+          if (dropDownRefreshText !== XLJZ) elDropDownRefreshText.textContent = dropDownRefreshText = XLJZ
+        },
+        onDragGreaterThreshold: function () {
+          console.log('onDragGreaterThreshold')
+          if (dropDownRefreshText !== SKJZ) elDropDownRefreshText.textContent = dropDownRefreshText = SKJZ
+        },
+        onDragDone: function () {
+          console.log('onDragDone')
+          elDropDownRefreshText.textContent = '加载中...'
+
+          // 模拟接口耗时
+          setTimeout(function () {
+            insertDom()
+            this.dragLoadingDone()
+            elDropDownRefreshText.textContent = dropDownRefreshText = XLJZ
+          }.bind(this), 1000)
+        },
+        onScrollToThreshold: function () {
+          console.log('onScrollToThreshold')
+
+          // 模拟接口耗时
+          setTimeout(function () {
+            appendDom()
+            this.scrollLoadingDone()
+          }.bind(this), 1000)
+        }
+      })
+
+      insertDom()
+
+      function insertDom() {
+        var backgroundColor = Math.random().toString(16).slice(2, 8)
+        var p
+        for (var i = 0; i < 22; i++) {
+          p = document.createElement('p')
+          p.style.backgroundColor = '#' + backgroundColor
+          p.textContent = Math.random()
+          document.querySelector('.content').insertAdjacentElement('afterbegin', p)
+        }
+      }
+
+      function appendDom() {
+        var backgroundColor = Math.random().toString(16).slice(2, 8)
+        var p
+        for (var i = 0; i < 11; i++) {
+          p = document.createElement('p')
+          p.style.backgroundColor = '#' + backgroundColor
+          p.textContent = Math.random()
+          document.querySelector('.content').insertAdjacentElement('beforeend', p)
+        }
+      }
+    })()
+  </script>
+</body>
+
+</html>
