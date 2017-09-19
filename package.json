@@ -1,5 +1,5 @@
 {
-  "name": "tractor",
+  "name": "tractor.js",
   "version": "1.0.0",
   "description": "移动端下拉加载（刷新）和滚动加载，无依赖，支持现代浏览器。",
   "main": "dist/tractor.js",
