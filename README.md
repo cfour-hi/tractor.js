@@ -4,7 +4,7 @@
 
 ## Example
 
-[Demo](https://monine.github.io/tractor/example/)
+[Demo](https://monine.github.io/tractor.js/example/)
 
 ## Usage
 
