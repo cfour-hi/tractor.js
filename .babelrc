@@ -4,13 +4,7 @@
   ],
   "plugins": [
     [
-      "transform-runtime",
-      {
-        "helpers": false, // 插件代码在一个文件内，无须以 module 到方式引入 babel helper
-        "polyfill": true, // 插件有使用到 Object.assign 静态方法
-        "regenerator": false, // 插件未使用到 generator 或是 async 函数
-        "moduleName": "babel-runtime"
-      }
+      "transform-runtime"
     ]
   ]
 }
